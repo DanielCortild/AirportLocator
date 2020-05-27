@@ -69,4 +69,31 @@ body {
 	top: 250px;
 
 	border-radius: 30px;
+
+	overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.container .stores .store {
+	border-bottom: solid 1px gray;
+	margin: 20px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.container .stores .store .text-info .address {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.container .stores .store .code {
+	margin-left: auto;
+	background-color: lightgray;
+	padding: 5px;
+	border-radius: 15px;
 }
