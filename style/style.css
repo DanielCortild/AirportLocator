@@ -58,7 +58,7 @@ body {
 	color: white;
 }
 
-.container .stores {
+.container .locations {
 	background-color: white;
 	width: 340px;
 	height: calc(100vh - 300px);
@@ -77,7 +77,7 @@ body {
   width: 0;
 }
 
-.container .stores .store {
+.container .locations .location {
 	border-bottom: solid 1px gray;
 	margin: 20px;
 	padding-bottom: 10px;
@@ -86,14 +86,26 @@ body {
 	align-items: center;
 }
 
-.container .stores .store .text-info .address {
-	font-size: 20px;
+.container .locations .location .text-info span {
+	display: block;
 	margin-bottom: 10px;
 }
 
-.container .stores .store .code {
+.container .locations .location .name {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.container .locations .location .woeid {
+	font-style: italic;
+	color: darkgray;
+}
+
+
+
+.container .locations .location .code {
 	margin-left: auto;
 	background-color: lightgray;
-	padding: 5px;
+	padding: 6px;
 	border-radius: 15px;
 }

@@ -1,4 +1,4 @@
-let airports = [
+let locations = [
   {
     "code": "AAA",
     "lat": "-17.3595",
