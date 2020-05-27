@@ -1,0 +1,72 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	height: 100vh;
+}
+
+.title {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	font-size: 40px;
+	font-weight: bold;
+	text-transform: uppercase;
+	z-index: 1;
+}
+
+.search {
+	width: 340px;
+	height: 60px;
+	background-color: #454E53;
+
+	position: absolute;
+	z-index: 1;
+	top: 160px;
+	left: 100px;
+
+	border-radius: 30px;
+
+	display: flex;
+	align-items: center;
+}
+
+.search input {
+	background-color: transparent;
+	width: 100%;
+
+	font-size: 26px;
+	color: white;
+
+	border-style: none;
+
+	padding: 0px 24px;
+}
+
+.search input:focus {
+	outline: none;
+}
+
+.search i {
+	position: absolute;
+	right: 20px;
+	font-size: 24px;
+	color: white;
+}
+
+.container .stores {
+	background-color: white;
+	width: 340px;
+	height: calc(100vh - 300px);
+
+	z-index: 1;
+	position: absolute;
+	left: 100px;
+	top: 250px;
+
+	border-radius: 30px;
+}
