@@ -1,6 +1,7 @@
 let markers = [];
 let map;
 let infoWindow;
+let image;
 
 initMap = () => {
   var brussels = {lat: 49.8153, lng: 6.1296};
@@ -8,70 +9,7 @@ initMap = () => {
   map = new google.maps.Map(document.getElementById('map'), {
     center: brussels,
     zoom: 9,
-    styles: [
-      {
-        "featureType": "administrative.country",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#000000"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.land_parcel",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#000000"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.locality",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#000000"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.neighborhood",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#000000"
-          }
-        ]
-      },
-      {
-        "featureType": "administrative.province",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "color": "#000000"
-          }
-        ]
-      },
-      {
-        "featureType": "road",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
-      },
-      {
-        "featureType": "transit.station.airport",
-        "elementType": "geometry",
-        "stylers": [
-          {
-            "color": "#e5e5e5"
-          }
-        ]
-      }
-    ]
+    styles
   });
   createMarkers();
   displayLocations();
@@ -79,36 +17,46 @@ initMap = () => {
 
 displayLocations = () => {
   var locationsHTML = "";
-  locations.filter( ({type}) => type.includes("Airport"))
-    .forEach( location => {
+  locations.filter( ({type}) => type.includes("Airport")).forEach( location => {
     const {name, city, country, code, woeid} = location;
     locationsHTML += `        
     <div class="location">
       <div class="text-info">
         <span class="name">${name}</span>
         <span class="address">${city}, ${country}</span>
-        <span class="woeid">${woeid}</span>
       </div>
       <div class="code">${code}</div>
-    </div>`
+    </div><hr>`
   })
   document.querySelector('.locations').innerHTML = locationsHTML;
 }
 
 createMarkers = () => {
   locations.filter( ({type}) => type.includes("Airport")).map((location) => {
-    let {lat, lon, name, city, country} = location;
-    let position = {
-      lat: parseFloat(lat), 
-      lng: parseFloat(lon)
-    };
-    createMarker(position, name, city + ", " + country);
+    createAirportMarker(location);
   });
 } 
 
-createMarker = (position, name, address) => {
-  var html = `<b>${name}</b> <br/>${address}`;
-  var marker = new google.maps.Marker({map, position});
+createAirportMarker = ({name, code, city, country, lat, lon, woeid}) => {
+  var html = `
+  <div class="infoBox">
+    <span><b>${name + " (" + code + ")" }</b></span>
+    <hr>
+    <span>
+      <i class="fas fa-compass"></i>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}" target="_blank">${" " + city + ", " + country}</a>
+    </span>
+    <span class="woeid"><i class="fas fa-hashtag"></i>${woeid}</span>
+  </div>`;
+  let position = {
+    lat: parseFloat(lat), 
+    lng: parseFloat(lon)
+  };
+  var marker = new google.maps.Marker({
+    map, 
+    position, 
+    icon: 'assets/airport.png'
+  });
   google.maps.event.addListener(marker, 'click', () => {
     infoWindow.setContent(html);
     infoWindow.open(map, marker);

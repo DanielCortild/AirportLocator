@@ -78,34 +78,53 @@ body {
 }
 
 .container .locations .location {
-	border-bottom: solid 1px gray;
-	margin: 20px;
-	padding-bottom: 10px;
-	padding-right: 10px;
+	margin: 10px;
+	padding: 10px;
 	display: flex;
 	align-items: center;
+
+	border-radius: 10px;
+}
+
+.container .locations .location:hover {
+	background: gray;
+}
+
+.container .locations hr {
+	margin-right: 30px;
+	margin-left: 30px;
 }
 
 .container .locations .location .text-info span {
 	display: block;
-	margin-bottom: 10px;
 }
 
 .container .locations .location .name {
 	font-weight: bold;
 	font-size: 20px;
+	margin-bottom: 10px;
 }
-
-.container .locations .location .woeid {
-	font-style: italic;
-	color: darkgray;
-}
-
-
 
 .container .locations .location .code {
 	margin-left: auto;
 	background-color: lightgray;
 	padding: 6px;
 	border-radius: 15px;
+}
+
+
+.infoBox span {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+
+.infoBox .woeid {
+	font-style: italic;
+	color: darkgray;
+}
+
+.infoBox a {
+	text-decoration: none;
+	color: black;
 }
