@@ -27,7 +27,7 @@ displayLocations = (locations) => {
       <div class="code">${code}</div>
     </div><hr>`
   })
-  $('.locations').html(locationsHTML);
+  document.querySelector('.locations').innerHTML = locationsHTML;
 }
 
 searchLocations = () => {
