@@ -3,7 +3,7 @@
   <head>
     <link rel="icon" href="assets/logo.png">
     <title>Airport Locator</title>
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
     <script src="./js/airports.js"></script>
   </head>
@@ -11,8 +11,8 @@
 
     <div class="title">Airport Locator</div>
     <div class="search">
-      <input type="text" placeholder="Search Location" />
-      <i class="fas fa-search"></i>
+      <input id="input" type="text" placeholder="Search Location" onchange="searchLocations()" />
+      <i class="fas fa-search" onclick="searchLocations()"></i>
     </div>
     <div class="container">
       <div class="locations"></div>
