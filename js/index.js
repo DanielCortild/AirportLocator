@@ -19,7 +19,7 @@ initMap = () => {
       maxZoom: 10,
       minZoom: 1
   }).addTo(map);
-  searchLocations();
+  //searchLocations();
 }
 
 displayLocations = (locations) => {
