@@ -14,7 +14,7 @@ initMap = () => {
   map = L.map('map');
   map.setView(luxembourg, 9);
   markerClusters = L.markerClusterGroup();
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png', {
       attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
       maxZoom: 10,
       minZoom: 1
@@ -39,6 +39,7 @@ displayLocations = (locations) => {
 }
 
 searchLocations = () => {
+  clearMarkers();
   var search = document.getElementById('input').value.toLowerCase();
   let foundLocations;
   if(search) {
@@ -51,10 +52,7 @@ searchLocations = () => {
     );
   } else {
     foundLocations = locations;
-    console.log("Empty")
   }
-
-  clearMarkers();
   displayLocations(foundLocations);
   createMarkers(foundLocations);
   setOnClickListener();
