@@ -64,7 +64,7 @@ setOnClickListener = () => {
   document.querySelectorAll('.location').forEach((location, index) => {
     location.addEventListener('click', () => {
       let m = markers[index];
-      map.setView([m._latlng.lat, m._latlng.lng]);
+      map.setView([m._latlng.lat, m._latlng.lng], 9);
       m.openPopup();
     });
   });
