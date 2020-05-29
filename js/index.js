@@ -1,16 +1,28 @@
 let markers = [];
-let map;
 let infoWindow;
 let image;
 
+let luxembourg = [49.8153, 6.1296]
+let map;
+let markerClusters;
+
+var myIcon = L.icon({
+  iconUrl: "assets/airport.png",
+  iconSize: [64, 64],
+  iconAnchor: [32, 64],
+  popupAnchor: [-3, -76],
+});
+
 initMap = () => {
-  var brussels = {lat: 49.8153, lng: 6.1296};
-  infoWindow = new google.maps.InfoWindow();
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: brussels,
-    zoom: 9,
-    styles
-  });
+  map = L.map('map').setView(luxembourg, 9);
+  map.createPane('labels');
+  markerClusters = L.markerClusterGroup();
+  L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
+      attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
+      minZoom: 1,
+      maxZoom: 19,
+      zoomControl: false
+  }).addTo(map);
   searchLocations();
 }
 
@@ -34,15 +46,16 @@ searchLocations = () => {
   var search = document.getElementById('input').value.toLowerCase();
   let foundLocations;
   if(search) {
-    foundLocations = locations.filter(({name, city, state, country, code}) =>
-      ( name ? name.toLowerCase().includes(search) : true ||
-        city ? city.toLowerCase().includes(search) : true ||
-        state ? state.toLowerCase().includes(search) : true ||
-        country ? country.toLowerCase().includes(search) : true ||
-        code ? code.toLowerCase().includes(search) : true )
+    foundLocations = locations.filter(({name, city, state, country, code}) =>        
+      ( (name ? name.toLowerCase().includes(search) : false) ||
+        (city ? city.toLowerCase().includes(search) : false) ||
+        (state ? state.toLowerCase().includes(search) : false) ||
+        (country ? country.toLowerCase().includes(search) : false) ||
+        (code ? code.toLowerCase().includes(search) : false) )
     );
   } else {
     foundLocations = locations;
+    console.log("Empty")
   }
 
   clearMarkers();
@@ -54,26 +67,26 @@ searchLocations = () => {
 setOnClickListener = () => {
   document.querySelectorAll('.location').forEach((location, index) => {
     location.addEventListener('click', () => {
-      google.maps.event.trigger(markers[index], 'click');
+      let m = markers[index];
+      map.setView([m._latlng.lat, m._latlng.lng]);
+      m.openPopup();
     });
   });
 }
 
 createMarkers = (locations) => {
   locations.filter( ({type}) => type.includes("Airport")).map((location) => {
-    createAirportMarker(location);
+    createMarker(location);
   });
+  map.addLayer(markerClusters);
 }
 
 clearMarkers = () => {
-  infoWindow.close();
-  markers.forEach(marker => {
-    marker.setMap(null);
-  })
+  markerClusters.clearLayers();
   markers = [];
 }
 
-createAirportMarker = ({name, code, city, country, lat, lon, woeid}) => {
+createMarker = ({name, code, city, country, lat, lon, woeid}) => {
   var html = `
   <div class="infoBox">
     <span><b>${name + " (" + code + ")" }</b></span>
@@ -84,19 +97,8 @@ createAirportMarker = ({name, code, city, country, lat, lon, woeid}) => {
     </span>
     <span class="woeid"><i class="fas fa-hashtag"></i>${" " + woeid}</span>
   </div>`;
-  let position = {
-    lat: parseFloat(lat),
-    lng: parseFloat(lon)
-  };
-  var marker = new google.maps.Marker({
-    map,
-    position,
-    icon: 'assets/airport.png'
-  });
-  google.maps.event.addListener(marker, 'click', () => {
-    infoWindow.setContent(html);
-    infoWindow.open(map, marker);
-    map.panTo(position);
-  });
+  var marker = L.marker([lat, lon], {icon: myIcon});
+  marker.bindPopup(html);
+  markerClusters.addLayer(marker);
   markers.push(marker);
 }

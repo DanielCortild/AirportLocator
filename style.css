@@ -7,12 +7,13 @@ body {
 
 #map {
 	height: 100vh;
+	z-index: 0;	
 }
 
 .title {
 	position: absolute;
 	left: 100px;
-	top: 100px;
+	top: 30px;
 	font-size: 40px;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -26,7 +27,7 @@ body {
 
 	position: absolute;
 	z-index: 1;
-	top: 160px;
+	top: 100px;
 	left: 100px;
 
 	border-radius: 30px;
@@ -61,12 +62,12 @@ body {
 .container .locations {
 	background-color: white;
 	width: 340px;
-	height: calc(100vh - 300px);
+	height: calc(100vh - 200px);
 
 	z-index: 1;
 	position: absolute;
 	left: 100px;
-	top: 250px;
+	top: 180px;
 
 	border-radius: 30px;
 
@@ -90,6 +91,7 @@ body {
 
 .container .locations .location:hover {
 	background: #cccccc;
+	cursor: pointer;
 }
 
 .container .locations hr {
