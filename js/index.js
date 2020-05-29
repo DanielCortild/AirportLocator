@@ -11,8 +11,8 @@ var myIcon = L.icon({
 });
 
 initMap = () => {
-  map = L.map('map').setView(luxembourg, 9);
-  map.createPane('labels');
+  map = L.map('map');
+  map.setView(luxembourg, 9);
   markerClusters = L.markerClusterGroup();
   L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
       attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
