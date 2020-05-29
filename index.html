@@ -3,12 +3,18 @@
   <head>
     <link rel="icon" href="assets/logo.png">
     <title>Airport Locator</title>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
-      <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+    
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
     <script src="./js/airports.js"></script>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js'></script>
+    <script src="./js/maps-style.js"></script>
+    <script src="./js/index.js"></script>
   </head>
   <body>
 
@@ -23,13 +29,7 @@
 
     <div id="map"></div>
 
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-    <script src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js'></script>
-    <script src="./js/maps-style.js"></script>
-    <script src="./js/index.js"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh15L6ZQVrZVsMjwAhb_3-X6bbgpSGtQk&callback=initMap"
-    async defer></script>
+    <script>initMap();</script>
 
   </body>
 </html>

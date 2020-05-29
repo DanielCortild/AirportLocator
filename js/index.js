@@ -1,7 +1,4 @@
 let markers = [];
-let infoWindow;
-let image;
-
 let luxembourg = [49.8153, 6.1296]
 let map;
 let markerClusters;
