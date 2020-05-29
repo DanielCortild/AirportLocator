@@ -20,6 +20,7 @@ initMap = () => {
       minZoom: 1
   }).addTo(map);
   searchLocations();
+  map.invalidateSize();
 }
 
 displayLocations = (locations) => {
@@ -64,6 +65,7 @@ setOnClickListener = () => {
       let m = markers[index];
       map.setView([m._latlng.lat, m._latlng.lng], 9);
       m.openPopup();
+      map.invalidateSize();
     });
   });
 }
