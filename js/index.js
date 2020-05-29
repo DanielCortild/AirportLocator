@@ -18,10 +18,7 @@ initMap = () => {
   map.createPane('labels');
   markerClusters = L.markerClusterGroup();
   L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
-      attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
-      minZoom: 1,
-      maxZoom: 19,
-      zoomControl: false
+      attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>'
   }).addTo(map);
   searchLocations();
 }
