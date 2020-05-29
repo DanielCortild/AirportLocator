@@ -16,7 +16,7 @@ initMap = () => {
   markerClusters = L.markerClusterGroup();
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
-      maxZoom: 10,
+      maxZoom: 19,
       minZoom: 1
   }).addTo(map);
   searchLocations();
